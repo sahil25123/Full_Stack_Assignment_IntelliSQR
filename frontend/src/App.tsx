@@ -1,16 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import LoginPage from './components/LoginPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { LoginPage } from './pages/LoginPage';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    
-    <>
-    <LoginPage/>
-
-
-    </>
+    <QueryClientProvider client={queryClient}>
+      <LoginPage />
+    </QueryClientProvider>
   );
 }
 
