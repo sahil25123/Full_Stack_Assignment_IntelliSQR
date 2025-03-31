@@ -1,42 +1,77 @@
 import { Request, Response } from 'express';
+import prisma from '../utils/prisma';
+import { comparePasswords, generateToken } from '../utils/auth';
 
-const mockUsers = [
-    { id: 1, email: 'admin@gmail.com', password: 'admin123' },
-    { id: 2, email: 'user@gmail.com', password: 'user123' },
-    { id:3 , email: 'user2@gmail.com', password: '123456' },
-];
+interface LoginResponse {
+    success: boolean;
+    message: string;
+    token?: string;
+    user?: {
+        id: string;
+        email: string;
+    };
+    error?: string;
+}
 
-export const loginController = (req: Request, res: Response): void => {
+export const loginController = async (req: Request, res: Response<LoginResponse>): Promise<void> => {
     try {
         const { email, password } = req.body;
 
+        // Input validation
         if (!email || !password) {
             res.status(400).json({ 
                 success: false,
-                error: 'Email and password are required' 
+                message: 'Validation failed',
+                error: 'Both email and password are required'
             });
             return;
         }
 
-        const user = mockUsers.find(user => user.email === email);
+        // Find user in database
+        const user = await prisma.user.findUnique({
+            where: { email }
+        });
 
-        if (!user || user.password !== password) {
-            res.status(401).json({ 
+        if (!user) {
+            res.status(401).json({
                 success: false,
-                error: 'Invalid credentials' 
+                message: 'Authentication failed',
+                error: 'Invalid email or password'
             });
             return;
         }
 
+        // Verify password
+        const isPasswordValid = await comparePasswords(password, user.password);
+        if (!isPasswordValid) {
+            res.status(401).json({
+                success: false,
+                message: 'Authentication failed',
+                error: 'Invalid email or password'
+            });
+            return;
+        }
+
+        // Generate JWT token
+        const token = generateToken(user);
+
+        // Successful response
         res.status(200).json({
             success: true,
             message: 'Login successful',
+            token,
             user: {
+                id: user.id,
                 email: user.email
             }
         });
+
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        console.error('Login error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error',
+            error: 'Internal server error'
+        });
     }
 };
