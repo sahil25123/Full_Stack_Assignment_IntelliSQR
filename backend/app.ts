@@ -1,13 +1,17 @@
 import express, { NextFunction, Request, Response } from 'express';
 import authRoutes from './src/Routes/auth';
+import cors from 'cors';
 
 const app = express();
 const port = 9000;
 
-// Middleware
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
+
+ 
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', authRoutes);
 
 // Health check endpoint

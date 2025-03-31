@@ -1,17 +1,20 @@
 export interface LoginFormData {
-    uid: string;
-    password: string;
-  }
-  
-  export interface LoginResponse {
-    token: string;
-    user: {
-      id: string;
-      email: string;
-    };
-  }
-  
-  export interface ApiError {
-    message: string;
-    statusCode: number;
-  }
+  email: string;
+  password: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  name?: string;
+}
+
+export interface LoginResponse {
+  token: string;
+  user: User;
+}
+
+export interface ApiError {
+  message: string;
+  statusCode: number;
+}

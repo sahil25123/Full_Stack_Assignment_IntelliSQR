@@ -7,8 +7,8 @@ import * as S from './LoginForm.styles';
 
 // Zod validation schema
 const loginSchema = z.object({
-  uid: z.string().min(1, 'UID is required'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().min(1, 'Email is required'),
+  password: z.string().min(5, 'Password must be at least 5 characters'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -32,12 +32,12 @@ export const LoginForm = () => {
       <S.LoginTitle>Welcome back!</S.LoginTitle>
       <S.LoginForm onSubmit={handleSubmit(onSubmit)}>
         <S.LoginInput
-          type="text"
-          placeholder="UID"
-          {...register('uid')}
-          error={!!errors.uid}
+          type="email"
+          placeholder="Email"
+          {...register('email')}
+          error={!!errors.email}
         />
-        {errors.uid && <S.ErrorText>{errors.uid.message}</S.ErrorText>}
+        {errors.email && <S.ErrorText>{errors.email.message}</S.ErrorText>}
 
         <S.LoginInput
           type="password"

@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 
 const mockUsers = [
-    { id: 1, email: 'admin@gmail.com', password: 'admin' },
-    { id: 2, email: 'user@gmail.com', password: 'user' }
+    { id: 1, email: 'admin@gmail.com', password: 'admin123' },
+    { id: 2, email: 'user@gmail.com', password: 'user123' },
+    { id:3 , email: 'user2@gmail.com', password: '123456' },
 ];
 
 export const loginController = (req: Request, res: Response): void => {
