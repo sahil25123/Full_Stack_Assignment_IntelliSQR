@@ -18,7 +18,7 @@ export const loginUser = async (data: LoginFormData): Promise<LoginResponse> => 
 };
 
 export const registerUser = async (data: RegisterFormData): Promise<LoginResponse> => {
-  const response = await fetch('http://localhost:9000/api/auth/register', {
+  const response = await fetch('http://localhost:9002/api/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
