@@ -3,11 +3,11 @@ import authRoutes from './src/routes/auth';
 import cors from 'cors';
 
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 9001;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
   credentials: true
 }));
 
