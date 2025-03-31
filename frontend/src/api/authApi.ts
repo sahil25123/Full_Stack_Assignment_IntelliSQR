@@ -1,7 +1,7 @@
 import { LoginFormData, LoginResponse, ApiError } from '../types/authTypes';
 
 export const loginUser = async (data: LoginFormData): Promise<LoginResponse> => {
-  const response = await fetch('http://localhost:9001/api/auth/login', {
+  const response = await fetch('http://localhost:9000/api/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
