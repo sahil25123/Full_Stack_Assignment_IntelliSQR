@@ -75,7 +75,7 @@ Full-Stack-Assignment/
 - Node.js (TypeScript)
 - Express.js (Routing)
 - Prisma (ORM for database)
-- MongoDB (Database)
+- MySQL (Database)
 
 ### Setup & Installation
 
@@ -92,7 +92,7 @@ Full-Stack-Assignment/
 3. Set up the environment variables:
    Create a `.env` file and add:
    ```
-   DATABASE_URL="your_MongoDB_connection_string"
+   DATABASE_URL="your_MySQL_connection_string"
    ```
 
 4. Run Prisma migrations:
