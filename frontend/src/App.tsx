@@ -1,20 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
     
     <>
+    <LoginPage/>
 
 
-    <div>
-      this is a test complete
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-    </div>
     </>
   );
 }
