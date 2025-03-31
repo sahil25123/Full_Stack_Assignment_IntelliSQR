@@ -10,8 +10,8 @@ export const comparePasswords = (plainPassword: string, hashedPassword: string):
   return bcrypt.compare(plainPassword, hashedPassword);
 };
 
-// JWT helpers - now accepts user object
-export const generateToken = (user: { id: string; email: string }): string => {
+// JWT helpers - accepts user object with number id
+export const generateToken = (user: { id: number; email: string }): string => {
   if (!process.env.JWT_SECRET) {
     throw new Error('Missing JWT secret');
   }
@@ -23,10 +23,10 @@ export const generateToken = (user: { id: string; email: string }): string => {
   );
 };
 
-export const verifyToken = (token: string): { userId: string; email: string } => {
+export const verifyToken = (token: string): { userId: number; email: string } => {
   if (!process.env.JWT_SECRET) {
     throw new Error('Missing JWT secret');
   }
 
-  return jwt.verify(token, process.env.JWT_SECRET) as { userId: string; email: string };
+  return jwt.verify(token, process.env.JWT_SECRET) as { userId: number; email: string };
 };

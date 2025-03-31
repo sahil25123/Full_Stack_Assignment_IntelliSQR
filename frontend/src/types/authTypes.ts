@@ -3,6 +3,11 @@ export interface LoginFormData {
   password: string;
 }
 
+export interface RegisterFormData {
+  email: string;
+  password: string;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -10,11 +15,15 @@ export interface User {
 }
 
 export interface LoginResponse {
+  success: boolean;
   token: string;
-  user: User;
+  user: {
+    id: string;
+    email: string;
+  };
 }
 
 export interface ApiError {
-  message: string;
-  statusCode: number;
+  success: boolean;
+  error: string;
 }

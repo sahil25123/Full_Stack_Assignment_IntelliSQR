@@ -1,14 +1,13 @@
-import { Request, Response , NextFunction} from 'express';
+import { RequestHandler, Router } from 'express';
 // Import the loginController from the controller
-import { Router } from 'express';
-import { loginController } from '../controller/auth';
+import { loginController, registerController } from '../controller/auth';
 
 const router = Router();
 
-// Use this exact syntax for the route definition
-router.post('/login', (req: Request, res: Response, next: NextFunction) => {
-    loginController(req, res);
-    next();
-  });
+// Login route
+router.post('/login', loginController as RequestHandler);
+
+// Register route
+router.post('/register', registerController as RequestHandler);
 
 export default router;
