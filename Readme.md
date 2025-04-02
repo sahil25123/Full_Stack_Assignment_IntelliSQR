@@ -1,8 +1,6 @@
-Here’s a `README.md` file for your full-stack assignment based on the provided requirements:
 
----
 
-# Full-Stack Assignment
+# Full-Stack Assignment_IntelliSQR
 
 ## 🚀 Project Overview
 
